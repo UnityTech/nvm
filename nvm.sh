@@ -421,8 +421,12 @@ nvm() {
       export MANPATH
       export NVM_PATH="$NVM_DIR/$VERSION/lib/node"
       export NVM_BIN="$NVM_DIR/$VERSION/bin"
-      sudo rm /usr/local/bin/node 2> /dev/null
-      sudo rm /usr/local/bin/npm 2> /dev/null
+      if [ -e /usr/local/bin/node ]; then
+          sudo rm /usr/local/bin/node 2> /dev/null
+      fi
+      if [ -e /usr/local/bin/npm ]; then
+          sudo rm /usr/local/bin/npm 2> /dev/null
+      fi
       sudo ln -s $NVM_BIN/node /usr/local/bin/node 2> /dev/null
       sudo ln -s $NVM_BIN/npm /usr/local/bin/npm 2> /dev/null
       echo "Now using node $VERSION"
