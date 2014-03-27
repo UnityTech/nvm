@@ -351,8 +351,12 @@ nvm() {
              "$NVM_DIR/bin/node-${t}.tar.gz" \
              "$NVM_DIR/$VERSION" 2>/dev/null
 
-      sudo rm /usr/local/bin/node 2> /dev/null
-      sudo rm /usr/local/bin/npm 2> /dev/null
+      if [ -e /usr/local/bin/node ]; then
+          sudo rm /usr/local/bin/node 2> /dev/null
+      fi
+      if [ -e /usr/local/bin/npm ]; then
+          sudo rm /usr/local/bin/npm 2> /dev/null
+      fi
 
       echo "Uninstalled node $VERSION"
 
